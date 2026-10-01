@@ -107,7 +107,7 @@ Sau khi đã add marketplace, bạn cài đặt các plugin bằng tên marketpl
    ```json
    {
      "name": "my-new-plugin",
-     "path": "plugins/my-new-plugin",
+     "source": "./plugins/my-new-plugin",
      "description": "Mô tả ngắn gọn về plugin",
      "version": "1.0.0"
    }

@@ -11,19 +11,19 @@
   "plugins": [
     {
       "name": "cpp-code-review",
-      "path": "plugins/cpp-code-review",
+      "source": "./plugins/cpp-code-review",
       "description": "Comprehensive C++ code review assistant, memory safety audit, and modern C++20 guidelines.",
       "version": "1.0.0"
     },
     {
       "name": "git-workflow",
-      "path": "plugins/git-workflow",
+      "source": "./plugins/git-workflow",
       "description": "Git workflow automation, interactive conventional commit helper, and branch management.",
       "version": "1.0.0"
     },
     {
       "name": "answer-formatter",
-      "path": "plugins/answer-formatter",
+      "source": "./plugins/answer-formatter",
       "description": "Plugin tùy chỉnh định dạng cấu trúc câu trả lời, văn phong báo cáo và phong cách phản hồi.",
       "version": "1.0.0"
     }
