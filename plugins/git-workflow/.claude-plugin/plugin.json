@@ -1,0 +1,16 @@
+{
+  "name": "git-workflow",
+  "version": "1.0.0",
+  "description": "Git workflow automation, conventional commit formatting, and pull request helper.",
+  "author": {
+    "name": "Claude Code Developer",
+    "email": "dev@example.com"
+  },
+  "keywords": [
+    "git",
+    "commit",
+    "workflow",
+    "conventional-commits",
+    "pr"
+  ]
+}
