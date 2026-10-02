@@ -17,7 +17,7 @@ Fast linting tool to validate Markdown formatting, link integrity, and technical
    - Detect images missing descriptive `alt text`.
 
 3. **Code Blocks & Syntax Highlighting**:
-   - Ensure all fenced code blocks (```) declare a language tag (e.g., ```json, ```bash, ```python).
+   - Ensure all fenced code blocks (`) declare a language tag (e.g., `json, `bash, `python).
 
 4. **Table Formatting & Alignment**:
    - Validate table alignment, missing column delimiters (`|`), or missing separator rows (`|---|---`).
@@ -29,6 +29,8 @@ Fast linting tool to validate Markdown formatting, link integrity, and technical
 ---
 
 ## Workflow:
+
 1. Scan specified target files.
 2. Output a structured list of lint errors categorized by line number.
 3. Provide an optional auto-fix suggestion for basic Markdown syntax errors.
+4. ...
