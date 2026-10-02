@@ -19,6 +19,7 @@ jobs:
       - name: Detect Changed AI Attributes
         id: changed-files
         run: |
+          # Get list of changed files in PR
           CHANGED_FILES=$(git diff --name-only HEAD~1 HEAD)
           echo "Changed files:"
           echo "$CHANGED_FILES"
@@ -36,7 +37,7 @@ jobs:
             "commit_sha": "${{ github.event.pull_request.head.sha }}",
             "repository": "${{ github.repository }}",
             "ref": "${{ github.event.pull_request.head.ref }}",
-            "changed_files": "${{ steps.changed-files.outputs.changed_files }}",
+            "changed_files": "${{ steps.changed-files.outputs.changed_files }}"
            
           }
           EOF
