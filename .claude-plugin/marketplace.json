@@ -1,8 +1,8 @@
 {
   "name": "demo-claude-marketplace",
   "owner": {
-    "name": "Developer",
-    "email": "dev@example.com"
+    "name": "Nguyen Minh Trung",
+    "email": "trungbb8@gmail.com"
   },
   "metadata": {
     "description": "Sample Claude Code Plugin Marketplace containing code quality, security, and workflow tools.",
@@ -24,7 +24,13 @@
     {
       "name": "answer-formatter",
       "source": "./plugins/answer-formatter",
-      "description": "Plugin tùy chỉnh định dạng cấu trúc câu trả lời, văn phong báo cáo và phong cách phản hồi.",
+      "description": "Plugin to customize response structure, report style, and feedback tone.",
+      "version": "1.0.0"
+    },
+    {
+      "name": "doc-review",
+      "source": "./plugins/doc-review",
+      "description": "Professional document review, auditing, and linter plugin (PRD, Technical Specs, API Docs, User Guides, README).",
       "version": "1.0.0"
     }
   ]
