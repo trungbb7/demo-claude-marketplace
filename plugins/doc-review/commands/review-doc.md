@@ -38,10 +38,10 @@ Evaluate the specified document file or workspace documents across 5 core dimens
 ## Execution Workflow:
 
 1. Scan specified target Markdown files or workspace documents.
-2. Generate an audit report with an overall **Quality Score / Document Quality Index (0 - 100)**.
-3. Categorize findings into severity levels:
-   - 🚨 **Critical Issue**: Contradictory information, missing core requirements, dangerous ambiguities.
+2. **Evaluate completeness first** — identify which key sections are present before looking for individual issues.
+3. Generate an audit report with an overall **Quality Score / Document Quality Index (0 - 100)**.
+4. Categorize findings into severity levels using **strict classification**:
+   - 🚨 **Critical Issue**: Contradictory information, missing core requirements, dangerous ambiguities that could mislead developers. *(Do NOT classify cosmetic or formatting issues as Critical.)*
    - ⚠️ **Improvement Warning**: Suboptimal structure, missing visual examples, inconsistent terminology.
    - 💡 **Suggestion**: Tone optimization, recommended mermaid diagrams, minor formatting fixes.
-4. Provide a **Suggested Refactored Draft** for underperforming sections.
-5. ...
+5. Provide a **Suggested Refactored Draft** for underperforming sections.
