@@ -7,24 +7,29 @@ description: Perform a comprehensive document review and audit (PRD, Tech Spec, 
 Evaluate the specified document file or workspace documents across 5 core dimensions:
 
 ## 1. Structure & Hierarchy
+
 - Verify logical flow of sections (Introduction, Objectives, Core Content, Conclusion / Next Steps).
 - Ensure consistent and standard heading hierarchy (`# H1`, `## H2`, `### H3`).
 - Verify inclusion of a Table of Contents for long documents (> 500 words).
 
 ## 2. Clarity & Readability
+
 - Identify verbose phrasing, subjective jargon, or ambiguous terms (e.g., "fast", "relatively large", "user-friendly interface").
 - Flag passive voice sentences and recommend active voice alternatives.
 - Ensure all technical terms and domain jargon are clearly defined.
 
 ## 3. Technical Completeness & Scope
+
 - Identify missing critical sections (e.g., missing Edge Cases, missing Non-Functional Requirements, missing Success Metrics in PRDs).
 - Verify logical consistency between diagrams, tables, and prose descriptions.
 
 ## 4. Grammar, Tone & Terminology Consistency
+
 - Detect typos, grammatical errors, and redundant trailing whitespaces.
 - Enforce consistent domain terminology (e.g., avoid mixing "User", "Account", and "Client" for the same concept).
 
 ## 5. Markdown Aesthetics & Presentation
+
 - Check table formatting, list structures (bulleted vs numbered), and blockquotes.
 - Verify image alt text presence and code block syntax language tags.
 
@@ -39,3 +44,4 @@ Evaluate the specified document file or workspace documents across 5 core dimens
    - ⚠️ **Improvement Warning**: Suboptimal structure, missing visual examples, inconsistent terminology.
    - 💡 **Suggestion**: Tone optimization, recommended mermaid diagrams, minor formatting fixes.
 4. Provide a **Suggested Refactored Draft** for underperforming sections.
+5. ...
