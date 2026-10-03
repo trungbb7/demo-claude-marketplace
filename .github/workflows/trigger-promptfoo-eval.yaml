@@ -52,12 +52,16 @@ jobs:
           echo "payload=$CLEAN_PAYLOAD" >> $GITHUB_OUTPUT
 
       - name: Send Webhook to Promptfoo VM
+        id: send-webhook
         env:
           WEBHOOK_URL: ${{ secrets.PROMPTFOO_VM_WEBHOOK_URL }}
           PAYLOAD: ${{ steps.prepare-payload.outputs.payload }}
         run: |
-          # Send HTTP POST Webhook
-          RESPONSE=$(curl -s -w "\nHTTP_STATUS:%{http_code}" -X POST "$WEBHOOK_URL" \
+          # Send HTTP POST Webhook — server chỉ cần trả 202 Accepted ngay lập tức
+          # Giới hạn 30s để tránh timeout nếu server phản hồi chậm
+          RESPONSE=$(curl -s -w "\nHTTP_STATUS:%{http_code}" \
+            --max-time 30 \
+            -X POST "$WEBHOOK_URL" \
             -H "Content-Type: application/json" \
             -d "$PAYLOAD")
 
@@ -67,12 +71,15 @@ jobs:
           echo "Response Status: $HTTP_STATUS"
           echo "Response Body: $BODY"
 
-          if [ "$HTTP_STATUS" -ne 200 ] && [ "$HTTP_STATUS" -ne 202 ]; then
-            echo "Failed to trigger Webhook on Promptfoo VM!"
+          # Server phải trả về 202 Accepted để xác nhận đã tiếp nhận yêu cầu
+          if [ "$HTTP_STATUS" -ne 202 ]; then
+            echo "::error::Server did not acknowledge the request (expected 202, got $HTTP_STATUS)"
             exit 1
           fi
 
-      - name: Comment PR Status
+          echo "Server acknowledged the evaluation request. Running in background..."
+
+      - name: Comment Evaluation Pending Status
         uses: actions/github-script@v7
         with:
           script: |
@@ -80,5 +87,16 @@ jobs:
               issue_number: context.issue.number,
               owner: context.repo.owner,
               repo: context.repo.repo,
-              body: `**Promptfoo Benchmark Triggered!**\n\n- **Commit SHA:** \`${context.payload.pull_request.head.sha}\`\n- **Status:** Job sent to Promptfoo Runner VM. The results will be automatically updated after completion.`
+              body: [
+                "## Promptfoo Evaluation In Progress",
+                "",
+                "| Field | Value |",
+                "|-------|-------|",
+                `| **Commit SHA** | \`${context.payload.pull_request.head.sha}\` |`,
+                `| **Branch** | \`${context.payload.pull_request.head.ref}\` |`,
+                "| **Status** | Running evaluation in background... |",
+                "",
+                "> The Promptfoo Runner VM has acknowledged this request and is now evaluating the AI attributes.",
+                "> Results will be automatically posted as a new comment on this PR once the evaluation completes."
+              ].join("\n")
             })
