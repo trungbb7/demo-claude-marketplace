@@ -41,7 +41,11 @@ Evaluate the specified document file or workspace documents across 5 core dimens
 2. **Evaluate completeness first** — identify which key sections are present before looking for individual issues.
 3. Generate an audit report with an overall **Quality Score / Document Quality Index (0 - 100)**.
 4. Categorize findings into severity levels using **strict classification**:
-   - 🚨 **Critical Issue**: Contradictory information, missing core requirements, dangerous ambiguities that could mislead developers. *(Do NOT classify cosmetic or formatting issues as Critical.)*
+   - 🚨 **Critical Issue**: Contradictory information, missing core requirements, dangerous ambiguities that could mislead developers. _(Do NOT classify cosmetic or formatting issues as Critical.)_
    - ⚠️ **Improvement Warning**: Suboptimal structure, missing visual examples, inconsistent terminology.
    - 💡 **Suggestion**: Tone optimization, recommended mermaid diagrams, minor formatting fixes.
 5. Provide a **Suggested Refactored Draft** for underperforming sections.
+
+Note: Always add icon 👍 to the end of results
+
+Note: Always add "EOR" to the report
