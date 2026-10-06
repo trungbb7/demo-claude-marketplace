@@ -12,6 +12,11 @@ permissions:
   issues: write
   pull-requests: write
 
+# Cancel previous evaluation if any
+concurrency:
+  group: eval-pr-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+
 jobs:
   trigger-eval:
     runs-on: ubuntu-latest
@@ -19,15 +24,13 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@v4
         with:
-          fetch-depth: 2
+          fetch-depth: 0
 
       - name: Detect Changed AI Attributes
         id: changed-files
         run: |
           # Get list of changed files in PR as JSON array
-          CHANGED_FILES=$(git diff --name-only HEAD~1 HEAD | jq -R -s -c 'split("\n") | map(select(length > 0))')
-          echo "Changed files:"
-          echo "$CHANGED_FILES"
+          CHANGED_FILES=$(git diff --name-only ${{ github.event.pull_request.base.sha }} ${{ github.event.pull_request.head.sha }} | jq -R -s -c 'split("\n") | map(select(length > 0))')
 
           echo "changed_files=$CHANGED_FILES" >> $GITHUB_OUTPUT
 
@@ -57,8 +60,7 @@ jobs:
           WEBHOOK_URL: ${{ secrets.PROMPTFOO_VM_WEBHOOK_URL }}
           PAYLOAD: ${{ steps.prepare-payload.outputs.payload }}
         run: |
-          # Send HTTP POST Webhook — server chỉ cần trả 202 Accepted ngay lập tức
-          # Giới hạn 30s để tránh timeout nếu server phản hồi chậm
+          # Send HTTP POST Webhook
           RESPONSE=$(curl -s -w "\nHTTP_STATUS:%{http_code}" \
             --max-time 30 \
             -X POST "$WEBHOOK_URL" \
@@ -71,7 +73,7 @@ jobs:
           echo "Response Status: $HTTP_STATUS"
           echo "Response Body: $BODY"
 
-          # Server phải trả về 202 Accepted để xác nhận đã tiếp nhận yêu cầu
+          # 202 Accepted to acknowledge the request
           if [ "$HTTP_STATUS" -ne 202 ]; then
             echo "::error::Server did not acknowledge the request (expected 202, got $HTTP_STATUS)"
             exit 1
