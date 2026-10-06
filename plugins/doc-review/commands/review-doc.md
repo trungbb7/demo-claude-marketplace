@@ -65,4 +65,4 @@ Use the following calibration to assign the Quality Score consistently:
 
 **Important**: Do NOT penalize a document below its calibration band for minor cosmetic issues. If a document has strong fundamentals (clear structure, code samples, benchmarks, comprehensive API reference, error handling), it should score in the 80+ range even if it has minor suggestions for improvement.
 
-Note: Always add icon 💜 to the end of results
+Note: Always add icon 💤 to the end of results
