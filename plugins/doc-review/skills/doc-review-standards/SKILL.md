@@ -43,9 +43,15 @@ Use this skill whenever drafting, editing, or auditing technical documentation, 
 3. **Usage Examples**: Copy-pasteable runnable code snippets.
 4. **Troubleshooting & FAQ**: Common errors and quick fixes.
 
+### D. README Scoring Guidance
+- A README that covers **7 or more** of: ToC, Features, Installation, Quick Start, Configuration, API Reference, Benchmarks, Error Handling, Troubleshooting, Contributing — should score **>= 80/100**.
+- **Do NOT penalize** concrete performance data (e.g., "100,000 RPS", "P99 < 5ms") as "unsubstantiated claims" when they are accompanied by benchmark methodology details (tools, hardware, parameters).
+- **Cosmetic issues** (minor formatting, trailing whitespace, missing alt text) should be classified as **Suggestions**, not Critical issues.
+
 ## 3. Markdown Formatting Standards
 
 - **Headings**: Single top-level `# H1` per file. Proper hierarchy down to `## H2` and `### H3`.
 - **Code Blocks**: Always include syntax language tags (e.g., ```json, ```yaml, ```bash, ```typescript).
 - **Images**: Always include descriptive `alt text`: `![Payment checkout flow diagram](./assets/checkout-flow.png)`.
 - **Tables**: Clear column headers with proper alignment syntax.
+
