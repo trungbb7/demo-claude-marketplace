@@ -33,4 +33,5 @@ Fast linting tool to validate Markdown formatting, link integrity, and technical
 1. Scan specified target files.
 2. Output a structured list of lint errors categorized by line number.
 3. Provide an optional auto-fix suggestion for basic Markdown syntax errors.
-4. ...
+
+Note: Always add icon 🎨 to the end of results
